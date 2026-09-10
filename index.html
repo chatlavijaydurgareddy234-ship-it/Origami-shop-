@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Origami Shop</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f2f2f2;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background: #444;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            width: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #aaa;
+        }
+
+        .product button {
+            background: green;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-box,
+        .checkout-box {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #aaa;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .quantity button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove {
+            background: red;
+            color: white;
+            border: none;
+            padding: 7px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .clear {
+            background: #222;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        #total {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .checkout-box {
+            max-width: 500px;
+        }
+
+        .checkout-box input,
+        .checkout-box textarea {
+            width: 90%;
+            padding: 12px;
+            margin: 8px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .checkout-box textarea {
+            height: 80px;
+            resize: none;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #orderMessage {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>🦚Origami Shop</h1>
+
+    <p>Beautiful Handmade Origami</p>
+
+</header>
+
+
+<nav>
+
+    <a href="#home">Home</a>
+
+    <a href="#products">Products</a>
+
+    <a href="#cart">Cart 🛒</a>
+
+    <a href="#checkout">Checkout</a>
+
+    <a href="#about">About</a>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home">
+
+    <h2>Welcome to Origami Shop! 🎨</h2>
+
+    <p>
+        Choose your favourite handmade origami.
+    </p>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="products">
+
+    <h2>🛍️ Products</h2>
+
+
+    <div class="products">
+
+
+        <div class="product">
+
+            <h2>🦚</h2>
+
+            <h3>Peacock</h3>
+
+            <p>Rs.150</p>
+
+            <button onclick="addToCart('Peacock', 150)">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <h2>🐉</h2>
+
+            <h3>Dragon</h3>
+
+            <p>Rs.200</p>
+
+            <button onclick="addToCart('Dragon', 200)">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <h2>🦋</h2>
+
+            <h3>Butterfly</h3>
+
+            <p>Rs.80</p>
+
+            <button onclick="addToCart('Butterfly', 80)">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <h2>🐘</h2>
+
+            <h3>Elephant</h3>
+
+            <p>Rs.150</p>
+
+            <button onclick="addToCart('Elephant', 150)">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <h2>🦜</h2>
+
+            <h3>Parrot</h3>
+
+            <p>Rs.120</p>
+
+            <button onclick="addToCart('Parrot', 120)">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <div class="product">
+
+            <h2>🐍</h2>
+
+            <h3>Snake</h3>
+
+            <p>Rs.100</p>
+
+            <button onclick="addToCart('Snake', 100)">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- CART -->
+
+<section id="cart">
+
+    <h2>🛒 Your Cart</h2>
+
+
+    <div class="cart-box">
+
+
+        <div id="cartItems">
+
+            <p>Your cart is empty.</p>
+
+        </div>
+
+
+        <div id="total">
+
+            Total: Rs.0
+
+        </div>
+
+
+        <button
+            class="clear"
+            onclick="clearCart()">
+
+            Clear Cart
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+<!-- CHECKOUT -->
+
+<section id="checkout">
+
+    <h2>📝 Checkout</h2>
+
+
+    <div class="checkout-box">
+
+
+        <h3>Customer Details</h3>
+
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Your Name">
+
+
+        <input
+            type="tel"
+            id="phone"
+            placeholder="Phone Number">
+
+
+        <textarea
+            id="address"
+            placeholder="Delivery Address"></textarea>
+
+
+        <h3>Order Summary</h3>
+
+
+        <div id="checkoutItems">
+
+            Your cart is empty.
+
+        </div>
+
+
+        <h3 id="checkoutTotal">
+
+            Total: Rs.0
+
+        </h3>
+
+
+        <button
+            class="whatsapp-button"
+            onclick="sendWhatsAppOrder()">
+
+            📱 Order on WhatsApp
+
+        </button>
+
+
+        <p id="orderMessage"></p>
+
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <h2>ℹ️ About</h2>
+
+    <p>
+"Handmade with paper, crafted with creativity. We create unique origami models that bring art, imagination, and joy to life." ✨
+    </p>
+
+</section>
+
+
+
+<script>
+
+
+/* CART */
+
+let cart = [];
+
+
+/*
+   PUT THE AUTHORIZED SHOP/PARENT
+   WHATSAPP NUMBER HERE.
+
+   India country code = 91
+   Do not use +, spaces or dashes.
+*/
+
+let shopNumber = "919666309222";
+
+
+
+/* ADD TO CART */
+
+function addToCart(product, price) {
+
+
+    let existingItem =
+        cart.find(item => item.name === product);
+
+
+    if (existingItem) {
+
+        existingItem.quantity++;
+
+    }
+
+    else {
+
+        cart.push({
+
+            name: product,
+
+            price: price,
+
+            quantity: 1
+
+        });
+
+    }
+
+
+    updateCart();
+
+}
+
+
+
+/* UPDATE CART */
+
+function updateCart() {
+
+
+    let cartItems =
+        document.getElementById("cartItems");
+
+
+    let checkoutItems =
+        document.getElementById("checkoutItems");
+
+
+    cartItems.innerHTML = "";
+
+    checkoutItems.innerHTML = "";
+
+
+    let total = 0;
+
+
+
+    if (cart.length === 0) {
+
+
+        cartItems.innerHTML =
+            "<p>Your cart is empty.</p>";
+
+
+        checkoutItems.innerHTML =
+            "Your cart is empty.";
+
+    }
+
+
+
+    cart.forEach(function(item, index) {
+
+
+        let itemTotal =
+            item.price * item.quantity;
+
+
+        total += itemTotal;
+
+
+
+        /* CART ITEM */
+
+        cartItems.innerHTML += `
+
+            <div class="cart-item">
+
+                <div>
+
+                    <strong>
+                        ${item.name}
+                    </strong>
+
+                    <br>
+
+                    Rs.${item.price}
+                    ×
+                    ${item.quantity}
+
+                </div>
+
+
+                <div class="quantity">
+
+                    <button
+                        onclick="decreaseQuantity(${index})">
+
+                        ➖
+
+                    </button>
+
+
+                    <strong>
+                        ${item.quantity}
+                    </strong>
+
+
+                    <button
+                        onclick="increaseQuantity(${index})">
+
+                        ➕
+
+                    </button>
+
+                </div>
+
+
+                <div>
+
+                    Rs.${itemTotal}
+
+                </div>
+
+
+                <button
+                    class="remove"
+                    onclick="removeItem(${index})">
+
+                    ❌
+
+                </button>
+
+            </div>
+
+        `;
+
+
+
+        /* CHECKOUT ITEM */
+
+        checkoutItems.innerHTML += `
+
+            <p>
+
+                ${item.name}
+                × ${item.quantity}
+                = Rs.${itemTotal}
+
+            </p>
+
+        `;
+
+    });
+
+
+
+    document.getElementById("total").innerText =
+        "Total: Rs." + total;
+
+
+    document.getElementById("checkoutTotal").innerText =
+        "Total: Rs." + total;
+
+}
+
+
+
+/* INCREASE QUANTITY */
+
+function increaseQuantity(index) {
+
+    cart[index].quantity++;
+
+    updateCart();
+
+}
+
+
+
+/* DECREASE QUANTITY */
+
+function decreaseQuantity(index) {
+
+
+    cart[index].quantity--;
+
+
+    if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+    }
+
+
+    updateCart();
+
+}
+
+
+
+/* REMOVE ITEM */
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+
+}
+
+
+
+/* CLEAR CART */
+
+function clearCart() {
+
+    cart = [];
+
+    updateCart();
+
+}
+
+
+
+/* WHATSAPP ORDER */
+
+function sendWhatsAppOrder() {
+
+
+    let name =
+        document.getElementById("customerName")
+        .value.trim();
+
+
+    let phone =
+        document.getElementById("phone")
+        .value.trim();
+
+
+    let address =
+        document.getElementById("address")
+        .value.trim();
+
+
+    let message =
+        document.getElementById("orderMessage");
+
+
+
+    /* CHECK CART */
+
+    if (cart.length === 0) {
+
+        message.innerText =
+            "❌ Your cart is empty.";
+
+        return;
+
+    }
+
+
+
+    /* CHECK DETAILS */
+
+    if (
+        name === "" ||
+        phone === "" ||
+        address === ""
+    ) {
+
+        message.innerText =
+            "❌ Please fill all customer details.";
+
+        return;
+
+    }
+
+
+
+    /* TOTAL */
+
+    let total = 0;
+
+
+
+    /* CREATE MESSAGE */
+
+    let orderText =
+        "NEW ORIGAMI ORDER\n\n";
+
+
+    orderText +=
+        "Name: " + name + "\n";
+
+
+    orderText +=
+        "Customer Phone: " + phone + "\n";
+
+
+    orderText +=
+        "Address: " + address + "\n\n";
+
+
+    orderText +=
+        "ORDER DETAILS\n";
+
+
+
+    /* ADD PRODUCTS */
+
+    cart.forEach(function(item) {
+
+
+        let itemTotal =
+            item.price * item.quantity;
+
+
+        total += itemTotal;
+
+
+        orderText +=
+            "- " +
+            item.name +
+            " x " +
+            item.quantity +
+            " = Rs." +
+            itemTotal +
+            "\n";
+
+    });
+
+
+
+    /* ADD TOTAL */
+
+    orderText +=
+        "\nTOTAL: Rs." + total;
+
+
+
+    /* ENCODE MESSAGE */
+
+    let encodedMessage =
+        encodeURIComponent(orderText);
+
+
+
+    /* WHATSAPP URL */
+
+    let whatsappURL =
+        "https://wa.me/" +
+        shopNumber +
+        "?text=" +
+        encodedMessage;
+
+
+
+    /* OPEN WHATSAPP */
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+</script>
+
+
+</body>
+</html>
